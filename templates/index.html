@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    
+        <div class="card mt-5">
+            <div class="card-header flex">
+                <h1 class="float-left">Data</h1>
+                <a
+                    href="{% url 'auth_app:create' %}"
+                    type="button"
+                    class="btn btn-primary float-right"
+                    >Tambah</a
+                >
+            </div>
+            <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                <thead>
+                    <th>No</th>
+                    <th>Nim</th>
+                    <th>Kelas</th>
+                    <th>Jurusan</th>
+                    <th>Foto</th>
+                    <th>Action</th>
+                </thead>
+                    {% for data in all_data %}
+                    <tbody>
+                        <tr>
+                            <td>{{ data.id }}</td>
+                            <td>{{ data.nim }}</td>
+                            <td>{{ data.kelas }}</td>
+                            <td>{{ data.jurusan }}</td>
+                            <td><img src="{{ data.foto.url }}" alt="" width="auto" height="200px"></td>
+                            <td>
+                                <a href="{% url 'auth_app:update' data.id %}" class="btn btn-success">Update</a>
+                                <a href="{% url 'auth_app:delete' data.id %}" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                    {% endfor %}
+                </table>
+            </div>
+            </div>
+        </div>
+
+
+{% endblock %}
